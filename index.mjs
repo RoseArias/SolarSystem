@@ -12,14 +12,33 @@ app.get('/', async(req, res) => {
   let response = await fetch(url);
   let data = await response.json();
   let randomImage = data.urls.full;
+  //api limited
+  //let randomImage = "https://upload.wikimedia.org/wikipedia/commons/9/9e/Milky_Way_IR_Spitzer.jpg"
   res.render("index",{"image":randomImage})
-  
+
 });
 
 app.get('/planet', (req, res) => {
  let planetName = req.query.planetName;
  let planetInfo = planets[`get${planetName}`]();
  res.render('planet', { planetInfo, planetName });
+});
+
+app.get('/nasa', async(req, res) => {
+  //https://www.geeksforgeeks.org/javascript/how-to-format-javascript-date-as-yyyy-mm-dd/
+  const formateDate = (date) => {
+    return date.toLocaleDateString('en-CA');
+  }
+  const currentDate = new Date();
+
+  let date= formateDate(currentDate);
+  console.log(date);
+  let url = `https://api.nasa.gov/planetary/apod?api_key=9mUzIkhlZCZaOoMfspg7jMmwZCZ4LiRHtkgkambD&date=${date}`;
+  let response = await fetch(url);
+  let data = await response.json();
+  let POD = data;
+  res.render('nasa', {POD});
+  
 });
 
 

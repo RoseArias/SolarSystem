@@ -3,10 +3,19 @@
 <%- include('partials/head.ejs') %>
 
 <body>
-  <h1>The Solar System</h1>
   <%- include('partials/nav.ejs') %>
+<div class="content-div">
+
   <h2>Planet <%= planetName %></h2>
   <%= planetInfo.description %>
   <img src="<%= planetInfo.image %>">
+  <p><strong>Distance from the sun:</strong> <%= planetInfo.distanceFromSun %></p>
+  <p><strong>Year Length:</strong> <%= planetInfo.yearLength %></p>
+  <p><strong>radius:</strong> <%= planetInfo.radius %></p>
+  <p><strong>One earth day on <%= planetName %> is:</strong> <%= planetInfo.oneEarthDay %></p>
+  <p><strong>Number of Moons:</strong> <%= planetInfo.moons %></p>
+</div>
+<%- include('partials/footer.ejs') %>
+
 </body>
 </html>

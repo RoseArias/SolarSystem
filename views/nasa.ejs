@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<%- include('partials/head.ejs') %>
+
+<body>
+  <%- include('partials/nav.ejs') %>
+<div class="content-div">
+
+  <h2>Nasa's Picture of the day</h2>
+  "<%= POD.title %>"
+  <img src="<%= POD.url %>">
+  <%= POD.explanation %>
+
+</div>
+<%- include('partials/footer.ejs') %>
+
+</body>
+</html>
