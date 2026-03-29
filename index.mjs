@@ -15,11 +15,12 @@ app.get('/', async(req, res) => {
   let response = await fetch(url);
   let data = await response.json();
   let randomImage;
-  if(data.urls.full){
-    randomImage = data.urls.full;
-  }else{
-    console.log("API rate limited switching to default")
+  if(!data.urls.full){
+    
+        console.log("API rate limited switching to default")
     randomImage = "https://upload.wikimedia.org/wikipedia/commons/9/9e/Milky_Way_IR_Spitzer.jpg"
+  }else{
+    randomImage = data.urls.full;
   }
   //api limited
   res.render("index",{"image":randomImage})
