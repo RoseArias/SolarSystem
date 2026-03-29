@@ -14,9 +14,14 @@ app.get('/', async(req, res) => {
   let url = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&featured=true&query=solar-system`;
   let response = await fetch(url);
   let data = await response.json();
-  let randomImage = data.urls.full;
+  let randomImage;
+  if(data.urls.full){
+    randomImage = data.urls.full;
+  }else{
+    console.log("API rate limited switching to default")
+    randomImage = "https://upload.wikimedia.org/wikipedia/commons/9/9e/Milky_Way_IR_Spitzer.jpg"
+  }
   //api limited
-  //let randomImage = "https://upload.wikimedia.org/wikipedia/commons/9/9e/Milky_Way_IR_Spitzer.jpg"
   res.render("index",{"image":randomImage})
 
 });
