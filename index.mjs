@@ -5,6 +5,9 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+//for render
+const port = process.env.PORT || 4000;
+
 //routes
 app.get('/', async(req, res) => {
   let apiKey = "7756a1e81f817c186cf57294e1c19b37b49c54b8f34e7c499ee0ce5cd86cd16e";
@@ -54,6 +57,6 @@ app.get('/nasa', async(req, res) => {
 // });
 
 
-app.listen(3000, () => {
-  console.log('server started');
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
 });
